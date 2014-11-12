@@ -3,7 +3,22 @@ _author__ = 'Anand Patel'
 import rpyc
 
 
+def testprime(t):
+    for i in range(2, t):
+        if i < t:
+            if (t % i) == 0:
+                return False
+    return True
+
+
+def findprimes(n):
+    for i in range(2, n):
+        if testprime(i):
+            print(i),
+
 class PrimeService(rpyc.Service):
+
+    ALIASES = ["prime"]
 
     def on_connect(self):
         pass
@@ -11,22 +26,17 @@ class PrimeService(rpyc.Service):
     def on_disconnect(self):
         pass
     
-    def exposed_findPrimes(input):
-        findPrimes(input("Enter the number you want to find primes up to: "))
-        
+    def exposed_findprimes(n):
+        findprimes(n)
 
-#Finds all primes less than or equal to the input number.
-def testPrime(t):
-        for i in range(2, t):
-            if i < t:
-                if (t % i) == 0:
-                    return False
-        return True
+    def exposed_test(self):
+        return "it works."
 
- def findPrimes(n):
-    for i in range(2, n+1):
-        if testPrime(i):
-            print(i),
+if __name__ == "__main__":
+    from rpyc.utils.server import ThreadedServer
+    t = ThreadedServer(PrimeService, port=12345)
+    t.start()
+
 
 
     
