@@ -12,9 +12,12 @@ def testprime(t):
 
 
 def findprimes(n):
+    ret = ""
     for i in range(2, n):
         if testprime(i):
-            print(i),
+            #print(i),
+            ret = ret + str(i) + " "
+    return ret
 
 class PrimeService(rpyc.Service):
 
@@ -26,8 +29,8 @@ class PrimeService(rpyc.Service):
     def on_disconnect(self):
         pass
     
-    def exposed_findprimes(n):
-        findprimes(n)
+    def exposed_findprimes(self, n):
+        return findprimes(n)
 
     def exposed_test(self):
         return "it works."
