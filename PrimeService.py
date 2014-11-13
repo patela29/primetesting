@@ -1,4 +1,4 @@
-_author__ = 'Anand Patel'
+__author__ = 'Anand Patel and Jeffrey Creighton'
 
 import rpyc
 
@@ -19,6 +19,7 @@ def findprimes(n):
             ret = ret + str(i) + " "
     return ret
 
+
 class PrimeService(rpyc.Service):
 
     ALIASES = ["prime"]
@@ -32,9 +33,7 @@ class PrimeService(rpyc.Service):
     def exposed_findprimes(self, n):
         return findprimes(n)
 
-    def exposed_test(self):
-        return "it works."
-
+#starts the service, has to be ended manually.
 if __name__ == "__main__":
     from rpyc.utils.server import ThreadedServer
     t = ThreadedServer(PrimeService, port=12345)

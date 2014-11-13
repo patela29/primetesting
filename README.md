@@ -1,12 +1,13 @@
 primetesting
 ============
-This should be filled eventually
+Written by Anand Patel and Jeffrey Creighton
 
-#enable the ufw to port 12345 then run the PrimeService. then you can run this
-#it will print out "it works." didn't figure out how to call findprimes.
-#if you're running this on two vms "localhost" is changed to the ip of the vm
-#where PrimeService is running
+Exposed functions should be implemented inside PrimeService.py
 
+Run PrimeService either from Terminal or Pycharm then run PrimeClient. If
+not being run locally, make sure to replace "localhost" in PrimeClient with
+ip address of the PC rubbing PrimeService.
+
+Useful links:
 http://rpyc.readthedocs.org/en/latest/tutorial/tut3.html#tut3
 
-I got the two vms talking to each other by setting them both to bridged mode.
